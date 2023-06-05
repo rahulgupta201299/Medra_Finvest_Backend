@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const list = require('./SheetUpload/SheetUpload_route');
+const profile = require('./Profile/Profile_route');
 
 dotenv.config()
 const connection_url = process.env.MONGOOSE;
@@ -24,5 +25,6 @@ mongoose.connect(connection_url, {
 .catch(err => console.log(err));
 
 app.use('/data', list);
+app.use('/profile', profile);
 
 app.listen(port, () => console.log(`listening to port ${port}`));
