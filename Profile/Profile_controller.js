@@ -109,3 +109,25 @@ exports.userLogin = async (req, res, next) => {
 	}
 
 }
+
+exports.findMobileNumber = async (req, res, next) => {
+	const phoneNumber = req.params.mobile;
+	try {
+		const userFoundWithMobile = await profileDb.find({ phoneNumber });
+		if (userFoundWithMobile?.length) {
+			res.status(200).json({
+				found: true,
+				msg: `Found data for ${phoneNumber}!`,
+			});
+		} else {
+			res.status(200).json({
+				found: false,
+				msg: `No record Found. Please Register!`,
+			});
+		}
+	} catch (e) {
+		res.status(500).json({
+			msg: `Something went wrong!`,
+		});
+	}
+}

@@ -4,5 +4,6 @@ const router = express.Router();
 
 router.post('/signup', profileController.userSignUp);
 router.post('/login', profileController.userLogin);
+router.get('/:mobile', profileController.findMobileNumber);
 
 module.exports = router;
